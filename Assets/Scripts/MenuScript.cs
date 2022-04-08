@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MenuScript : MonoBehaviour
 {
+
+   
+
     //Button Click Functions
     public void ClickQuit()
     {
@@ -12,27 +15,27 @@ public class MenuScript : MonoBehaviour
     }
     public void ClickStart()
     {
-        //hide menu show game
-
-        //begins game
-        GameManager.StartNewGame();
+        GameManager.ChangeState(GameState.Game);        
+      
+        
     }
     public void ClickMain()
     {
-        //hide current screen 
-
-        //show main menu
+        GameManager.ChangeState(GameState.Menu);
+      
 
     }
     public void ClickPause()
     {
-        //hide game
+        GameManager.ChangeState(GameState.Pause);
 
-        //show pause
+      
 
     }
     public void ClickUnpause()
     {
+        GameManager.ChangeState(GameState.Game);
+
         //hide pause
 
         //show game

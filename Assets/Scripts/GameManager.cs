@@ -3,13 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//states possible in game
+public enum GameState
+{
+    Menu,
+    Game,
+    Win,
+    Loss,
+    Pause
+}
+
 public class GameManager : MonoBehaviour
 {
+    
+  
     //variables
     public int GuessesLeft;
     public static string word;
-   static Dictionary<char, int> guessedLetters = new Dictionary<char, int>();
-   static Dictionary<char, int> lettersInWord = new Dictionary<char, int>();
+    Dictionary<char, int> guessedLetters = new Dictionary<char, int>();
+    Dictionary<char, int> lettersInWord = new Dictionary<char, int>();
+    static GameState gameState;
+
 
     public bool CheckSolve()
     {
@@ -30,7 +44,7 @@ public class GameManager : MonoBehaviour
         //if all letters have been guessed return true
         return true;
     }
-    public static void GetWord()
+    public void GetWord()
     {
         //get word and save it
         word="";
@@ -53,7 +67,7 @@ public class GameManager : MonoBehaviour
         }
 
     } 
-    public static string DisplayWord()
+    public string DisplayWord()
     {
         //reset string
         string displayWord="";
@@ -105,6 +119,8 @@ public class GameManager : MonoBehaviour
                     //if word is solved
                     if (CheckSolve())
                     {
+                        ChangeState(GameState.Win);
+
                         //victory
                     }
                 }
@@ -115,6 +131,7 @@ public class GameManager : MonoBehaviour
                     GuessesLeft-=1;
                     if (GuessesLeft <=0)
                     {
+                        ChangeState(GameState.Loss);
                         //loss
                     }
                     
@@ -125,7 +142,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public static void StartNewGame()
+    public void StartNewGame()
     {
         //clear any existing game
         guessedLetters.Clear();
@@ -139,7 +156,10 @@ public class GameManager : MonoBehaviour
 
 
 
-
+    public static void ChangeState(GameState newState)
+    {
+        gameState = newState;
+    }
 
     // Start is called before the first frame update
     void Start()
