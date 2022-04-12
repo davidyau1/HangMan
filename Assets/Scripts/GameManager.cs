@@ -106,9 +106,9 @@ public class GameManager : MonoBehaviour
         }
         displayWordText.text= displayWord;
     }
-    public void MakeGuess(KeyCode keyPressed)
+    public void MakeGuess(char letter)
     {
-        char letter=char.Parse(keyPressed.ToString());
+    
         //changers input into letter
         Char.ToUpper(letter);
         //checks it a letter
@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
                     if (CheckSolve())
                     {
                         ChangeState(GameState.Win);
-
+                        Debug.Log(gameState);
                         //victory
                     }
                 }
@@ -142,6 +142,8 @@ public class GameManager : MonoBehaviour
                     {
                         ChangeState(GameState.Loss);
                         //loss
+                        Debug.Log(gameState);
+
                     }
                     else
                     {
@@ -163,6 +165,7 @@ public class GameManager : MonoBehaviour
         UdpdateGuessCounter();
         lettersInWord.Clear();
         GetWord();
+        Debug.Log(word);
         DisplayWord();
     }
 
@@ -185,11 +188,109 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.GetKeyDown(KeyCode.A))
         {
-
-            MakeGuess(Input.anyKeyDown);
-
+            MakeGuess('a');
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            MakeGuess('b');
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            MakeGuess('c');
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            MakeGuess('d');
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            MakeGuess('e');
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            MakeGuess('f');
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            MakeGuess('g');
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            MakeGuess('h');
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            MakeGuess('i');
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            MakeGuess('j');
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            MakeGuess('k');
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            MakeGuess('l');
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            MakeGuess('m');
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            MakeGuess('n');
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            MakeGuess('o');
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            MakeGuess('p');
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            MakeGuess('q');
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            MakeGuess('r');
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            MakeGuess('s');
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            MakeGuess('t');
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            MakeGuess('u');
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            MakeGuess('v');
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            MakeGuess('w');
+        }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            MakeGuess('x');
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            MakeGuess('y');
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            MakeGuess('z');
         }
     }
 }
