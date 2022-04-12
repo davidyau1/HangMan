@@ -13,13 +13,7 @@ public class MenuScript : MonoBehaviour
         //quit application
         Application.Quit();
     }
-    public void ClickStart()
-    {
-        GameManager.ChangeState(GameState.Game);        
-      
-        
-    }
-    public void ClickMain()
+     public void ClickMain()
     {
         GameManager.ChangeState(GameState.Menu);
       
@@ -36,9 +30,6 @@ public class MenuScript : MonoBehaviour
     {
         GameManager.ChangeState(GameState.Game);
 
-        //hide pause
-
-        //show game
     }
 
 
