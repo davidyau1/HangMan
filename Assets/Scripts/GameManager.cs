@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
     {
         //clear any existing game
         ChangeState(GameState.Game);
-        lettersGuessedWrong.text = "Letters Guessed Wrong:";
+        lettersGuessedWrong.text = "";
         guessedLetters.Clear();
         guessesLeft = 6;
         UpdateGuessCounter();
