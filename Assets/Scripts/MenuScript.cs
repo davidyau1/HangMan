@@ -10,6 +10,7 @@ public class MenuScript : MonoBehaviour
         //quit application
         Application.Quit();
     }
+<<<<<<< Updated upstream
     public void ClickStart()
     {
         //hide menu show game
@@ -17,6 +18,9 @@ public class MenuScript : MonoBehaviour
         //begins game
         GameManager.StartNewGame();
     }
+=======
+ 
+>>>>>>> Stashed changes
     public void ClickMain()
     {
         //hide current screen 
@@ -33,9 +37,15 @@ public class MenuScript : MonoBehaviour
     }
     public void ClickUnpause()
     {
+<<<<<<< Updated upstream
         //hide pause
 
         //show game
+=======
+        GameManager.ChangeState(GameState.Game);
+
+     
+>>>>>>> Stashed changes
     }
 
 
