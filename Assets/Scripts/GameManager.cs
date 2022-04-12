@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //states possible in game
 public enum GameState
@@ -18,11 +19,14 @@ public class GameManager : MonoBehaviour
     
   
     //variables
-    public int GuessesLeft;
+    public int guessesLeft;
     public static string word;
     Dictionary<char, int> guessedLetters = new Dictionary<char, int>();
     Dictionary<char, int> lettersInWord = new Dictionary<char, int>();
     static GameState gameState;
+    public Text displayWordText;
+    public Text guessesLeftText;
+
 
 
     public bool CheckSolve()
@@ -47,7 +51,7 @@ public class GameManager : MonoBehaviour
     public void GetWord()
     {
         //get word and save it
-        word="";
+        word=Words.GetWord();
         //changes all letter to caps
         word.ToUpper();
         //loops through word and add letter to dictionary
@@ -67,7 +71,11 @@ public class GameManager : MonoBehaviour
         }
 
     } 
-    public string DisplayWord()
+    public void UdpdateGuessCounter()
+    {
+        guessesLeftText.text = "Guesses Remaining:"+guessesLeft;
+    }
+    public void DisplayWord()
     {
         //reset string
         string displayWord="";
@@ -87,7 +95,7 @@ public class GameManager : MonoBehaviour
                 //else us _ as placeholder
                 else
                 {
-                    displayWord += "_";
+                    displayWord += "-";
                 }
             }
             //if not letter just display char
@@ -96,10 +104,11 @@ public class GameManager : MonoBehaviour
                 displayWord+=letter;
             }
         }
-        return displayWord;
+        displayWordText.text= displayWord;
     }
-    public void MakeGuess(char letter)
+    public void MakeGuess(KeyCode keyPressed)
     {
+        char letter=char.Parse(keyPressed.ToString());
         //changers input into letter
         Char.ToUpper(letter);
         //checks it a letter
@@ -128,11 +137,15 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     //reduces guessesleft
-                    GuessesLeft-=1;
-                    if (GuessesLeft <=0)
+                    guessesLeft -= 1;
+                    if (guessesLeft <= 0)
                     {
                         ChangeState(GameState.Loss);
                         //loss
+                    }
+                    else
+                    {
+                        UdpdateGuessCounter();
                     }
                     
                 }
@@ -146,6 +159,8 @@ public class GameManager : MonoBehaviour
     {
         //clear any existing game
         guessedLetters.Clear();
+        guessesLeft = 6;
+        UdpdateGuessCounter();
         lettersInWord.Clear();
         GetWord();
         DisplayWord();
@@ -170,6 +185,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.anyKeyDown)
+        {
+
+            MakeGuess(Input.anyKeyDown);
+
+        }
     }
 }
