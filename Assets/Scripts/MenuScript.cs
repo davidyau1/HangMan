@@ -5,7 +5,6 @@ using UnityEngine;
 public class MenuScript : MonoBehaviour
 {
 
-   
 
     //Button Click Functions
     public void ClickQuit()
@@ -16,8 +15,6 @@ public class MenuScript : MonoBehaviour
      public void ClickMain()
     {
         GameManager.ChangeState(GameState.Menu);
-      
-
     }
     public void ClickPause()
     {

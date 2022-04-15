@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
     //variables
     public int guessesLeft;
     public static string word;
-    Dictionary<char, int> guessedLetters = new Dictionary<char, int>();
-    Dictionary<char, int> lettersInWord = new Dictionary<char, int>();
+    HashSet<char> guessedLetters = new HashSet<char>();
+    HashSet<char> lettersInWord = new HashSet<char>();
     static GameState gameState;
     public Text displayWordText;
     public Text guessesLeftText;
@@ -36,10 +36,10 @@ public class GameManager : MonoBehaviour
     public bool CheckSolve()
     {
         //check every value in key
-        foreach (var key in lettersInWord)
+        foreach (var letter in lettersInWord)
         {
             //check if letter has been guessed
-            if (guessedLetters.ContainsKey(key.Key))
+            if (guessedLetters.Contains(letter))
             {
 
             }
@@ -66,10 +66,10 @@ public class GameManager : MonoBehaviour
             if (Char.IsLetter(letter))
             {
 
-                if (!lettersInWord.ContainsKey(letter))
+                if (!lettersInWord.Contains(letter))
                 {
                     //adds letter to dictionary
-                    lettersInWord.Add(letter, 1);
+                    lettersInWord.Add(letter);
 
                 }
             }
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
             if (Char.IsLetter(letter))
             {
                 //if letter is guessed show
-                if (guessedLetters.ContainsKey(letter))
+                if (guessedLetters.Contains(letter))
                 {
                     //adds letter to dictionary
                     displayWord+=letter;
@@ -128,12 +128,12 @@ public class GameManager : MonoBehaviour
         if (Char.IsLetter(letter))
         {
             //checks if been guessed
-            if (!guessedLetters.ContainsKey(letter))
+            if (!guessedLetters.Contains(letter))
             {
                 //adds it to guessed letters
-                guessedLetters.Add(letter, 1);
+                guessedLetters.Add(letter);
                 //check if letter is in word
-                if (lettersInWord.ContainsKey(letter))
+                if (lettersInWord.Contains(letter))
                 {
                     //updates display
                     DisplayWord();
