@@ -58,8 +58,10 @@ public class Words : MonoBehaviour
         "open" 
     };
 
+    //get word
     public static string GetWord()
     {
+        //get random index to get random word
         string word= words[Random.Range(0,words.Length)];
         return word;
 

@@ -14,10 +14,12 @@ public class MenuScript : MonoBehaviour
     }
      public void ClickMain()
     {
+        //change state to menu
         GameManager.ChangeState(GameState.Menu);
     }
     public void ClickPause()
     {
+        //change state to pause
         GameManager.ChangeState(GameState.Pause);
 
       
@@ -25,6 +27,7 @@ public class MenuScript : MonoBehaviour
     }
     public void ClickUnpause()
     {
+        //change state to game (unpause)
         GameManager.ChangeState(GameState.Game);
 
     }

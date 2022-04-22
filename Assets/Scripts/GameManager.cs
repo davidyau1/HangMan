@@ -15,24 +15,36 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
-    
-  
-    //variables
+
+    #region variables
+    //guesses left
     public int guessesLeft;
+    //word to be solved
     public static string word;
+    //hashset for letters that have been guessed
     HashSet<char> guessedLetters = new HashSet<char>();
+    //hashset for letters that in word
     HashSet<char> lettersInWord = new HashSet<char>();
+    //state the the game is in 
     static GameState gameState;
+    #region UI Text
+    //UI variables to update UI Text
     public Text displayWordText;
     public Text guessesLeftText;
     public Text resultText;
     public Text revealWord;
     public Text lettersGuessedWrong;
+    #endregion
+    #region GameObjects
     public GameObject gameOverScreen;
     public GameObject gameScreen;
+    #endregion
+    #endregion
 
 
+    #region functions
 
+    // function to check if solved
     public bool CheckSolve()
     {
         //check every value in key
@@ -41,7 +53,7 @@ public class GameManager : MonoBehaviour
             //check if letter has been guessed
             if (guessedLetters.Contains(letter))
             {
-
+               
             }
             else
             {
@@ -52,6 +64,7 @@ public class GameManager : MonoBehaviour
         //if all letters have been guessed return true
         return true;
     }
+    //function to get a word
     public void GetWord()
     {
         //get word and save it
@@ -76,10 +89,14 @@ public class GameManager : MonoBehaviour
         }
 
     } 
+    //update ui guess counter
     public void UpdateGuessCounter()
     {
         guessesLeftText.text = "Guesses Remaining:"+guessesLeft;
     }
+
+    //update ui diplay word
+
     public void DisplayWord()
     {
         //reset string
@@ -119,6 +136,7 @@ public class GameManager : MonoBehaviour
         }
         displayWordText.text= displayWord;
     }
+    //function to make guess
     public void MakeGuess(char letter)
     {
     
@@ -179,6 +197,8 @@ public class GameManager : MonoBehaviour
         Debug.Log(gameState);
 
     }
+
+    //function to start game
     public void StartNewGame()
     {
         //clear any existing game
@@ -197,21 +217,20 @@ public class GameManager : MonoBehaviour
 
 
 
-
+    //update game state
     public static void ChangeState(GameState newState)
     {
         gameState = newState;
     }
+    #endregion
 
-    // Start is called before the first frame update
-    void Start()
-    {
-      
-    }
+ 
 
     // Update is called once per frame
     void Update()
     {
+        #region Input Letter
+        //If a letter has been entered make guess
         if (gameState==GameState.Game)
         {
             if (Input.GetKeyDown(KeyCode.A))
@@ -319,6 +338,6 @@ public class GameManager : MonoBehaviour
                 MakeGuess('Z');
             }
         }
-        
+        #endregion
     }
 }
